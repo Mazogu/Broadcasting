@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.micha.broadcastservices">
 
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,7 +40,14 @@
 
         <service
             android:name=".service.ListIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".StickyActivity" />
+
+        <receiver
+            android:name=".receiver.StickyReceiver"
+            android:enabled="true"
+            android:exported="false"></receiver>
     </application>
 
 </manifest>
