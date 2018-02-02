@@ -17,6 +17,16 @@ public class Taco implements Parcelable{
         this.salsa = salsa;
     }
 
+    @Override
+    public String toString() {
+        return "Taco{" +
+                "meat='" + meat + '\'' +
+                ", cheese='" + cheese + '\'' +
+                ", shell='" + shell + '\'' +
+                ", salsa='" + salsa + '\'' +
+                '}';
+    }
+
     protected Taco(Parcel in) {
         meat = in.readString();
         cheese = in.readString();

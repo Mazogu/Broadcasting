@@ -3,6 +3,7 @@ package com.example.micha.broadcastservices.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.example.micha.broadcastservices.model.Taco;
 import com.example.micha.broadcastservices.receiver.ListReceiver;
@@ -19,6 +20,7 @@ import java.util.Random;
  * TODO: Customize class - update intent actions and extra parameters.
  */
 public class ListIntentService extends IntentService {
+    public static final String TAG = ListIntentService.class.getSimpleName();
     List<Taco> randomTacoList;
     public ListIntentService() {
         super("ListIntentService");
@@ -27,13 +29,14 @@ public class ListIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         String[] cheeses = new String[]{"Mozzarella","Feta","Cheddar","Swiss"};
-        String[] meats = new String[]{"Beef,Chicken,Shrimp,Tofu"};
+        String[] meats = new String[]{"Beef","Chicken","Shrimp","Tofu"};
         String[] shells = new String[]{"Soft","Hard"};
         String[] salsa = new String[]{"Sweet","Mild","Spicy","Ignites Mouth"};
         randomTacoList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            Taco randomTaco = new Taco(cheeses[new Random().nextInt(cheeses.length)],meats[new Random().nextInt(meats.length)],
+            Taco randomTaco = new Taco(meats[new Random().nextInt(meats.length)], cheeses[new Random().nextInt(cheeses.length)],
                     shells[new Random().nextInt(shells.length)],salsa[new Random().nextInt(salsa.length)]);
+            //Log.d(TAG, "onHandleIntent: "+randomTaco);
             randomTacoList.add(randomTaco);
         }
         Intent broadcastIntent = new Intent(ListReceiver.LIST_ACTION);

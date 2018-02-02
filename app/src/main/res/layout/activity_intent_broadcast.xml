@@ -7,15 +7,16 @@
     tools:context="com.example.micha.broadcastservices.IntentBroadcastActivity">
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycle"/>
+        android:layout_height="match_parent"
+        android:id="@+id/recycle"
+        android:layout_above="@id/getList"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/buttons"
         android:id="@+id/getList"
-        android:onClick="getList"
-        />
+        android:text="Get List"
+        android:onClick="getList" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,11 +27,13 @@
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:id="@+id/sticky"
+            android:text="Go to Sticky"
             android:onClick="changeActivity"
             android:layout_weight="1"/>
         <Button
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
+            android:text="Go to Main"
             android:id="@+id/main"
             android:onClick="changeActivity"
             android:layout_weight="1"/>

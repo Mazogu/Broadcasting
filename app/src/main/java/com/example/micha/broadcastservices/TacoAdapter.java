@@ -1,6 +1,7 @@
 package com.example.micha.broadcastservices;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,8 @@ import java.util.List;
 
 public class TacoAdapter extends RecyclerView.Adapter<TacoAdapter.TacoHolder> {
 
-    List<Taco> tacos;
+    private static final String TAG = TacoAdapter.class.getSimpleName();
+    private List<Taco> tacos;
 
     public TacoAdapter(List<Taco> tacos) {
         this.tacos = tacos;
@@ -24,20 +26,26 @@ public class TacoAdapter extends RecyclerView.Adapter<TacoAdapter.TacoHolder> {
 
     @Override
     public TacoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.taco_card,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.taco_card,parent,false);
         return new TacoHolder(view);
     }
 
     @Override
     public void onBindViewHolder(TacoHolder holder, int position) {
-        for (Taco taco : tacos) {
-            holder.meat.setText(taco.getMeat());
-            holder.cheese.setText(taco.getCheese());
-            holder.shell.setText(taco.getShell());
-            holder.salsa.setText(taco.getSalsa());
-        }
+            holder.meat.setText(tacos.get(position).getMeat());
+            holder.cheese.setText(tacos.get(position).getCheese());
+            holder.shell.setText(tacos.get(position).getShell());
+            holder.salsa.setText(tacos.get(position).getSalsa());
     }
 
+    public void addToList(List<Taco> tacos){
+        this.tacos.addAll(tacos);
+        notifyDataSetChanged();
+    }
+
+    public List<Taco> getTacos(){
+        return tacos;
+    }
 
     @Override
     public int getItemCount() {
